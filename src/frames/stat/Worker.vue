@@ -30,12 +30,14 @@
 <script>
   import headerTop from '../../components/Header.vue'
   import {Group, Datetime} from 'vux'
+  import selectDate from '../../components/SelectDate.vue'
   var Highcharts = require('highcharts')
   export default {
     components: {
       headerTop,
       Datetime,
-      Group
+      Group,
+      selectDate
     },
     data () {
       return {
@@ -63,7 +65,7 @@
 //      this.drawAreaChart()
     },
     methods: {
-      getData () {
+      getCompanyData () {
         this.post('/LaborManage/welcome/findProjectInfoList.htm', {}, function (result) {
           if (result != null && result.length > 0) {
             let companys = new Map()

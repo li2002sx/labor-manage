@@ -2,13 +2,7 @@
     <section class="child_page">
         <headerTop :title="comName"></headerTop>
         <!--datetab-->
-        <div class="datechange">
-            <ul class="layout">
-                <li class="td">前一天</li>
-                <li class="td">出勤 | <em @click="showPlugin">2017-12-30</em></li>
-                <li class="td">后一天</li>
-            </ul>
-        </div>
+        <selectDate @statFun="getCompanyData"></selectDate>
         <!--datetab END-->
         <!--chart-->
         <div class="chartmod">
@@ -45,13 +39,15 @@
 <script>
   import headerTop from '../../components/Header.vue'
   import footerButtom from '../../components/Footer.vue'
+  import selectDate from '../../components/SelectDate.vue'
   import {Datetime} from 'vux'
   var Highcharts = require('highcharts')
   export default {
     components: {
       headerTop,
       footerButtom,
-      Datetime
+      Datetime,
+      selectDate
     },
     data () {
       return {
@@ -61,7 +57,7 @@
       }
     },
     created () {
-      this.getData()
+      this.getCompanyData()
     },
     filters: {
       subStr: function (value, num) {
@@ -74,7 +70,7 @@
       }
     },
     methods: {
-      getData () {
+      getCompanyData () {
         this.post('/LaborManage/welcome/findProjectInfoList.htm', {}, function (result) {
           if (result != null && result.length > 0) {
             let companyProjects = new Map()

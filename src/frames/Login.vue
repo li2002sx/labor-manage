@@ -73,7 +73,7 @@
         }
         this.post('/LaborManage/login/login.htm', param, function (result) {
           if (result.flag === 'success') {
-            this.toastShow('success', '登陆成功')
+//            this.toastShow('success', '登陆成功')
             // 记录用户名和密码的缓存
             this.setStore(this.userInfoStorage, JSON.stringify(param))
             this.toUrl('/index')

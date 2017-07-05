@@ -65,7 +65,7 @@
         teamName: '班组',
         teamNameData: [],
         teamNameValue: [],
-        back: this.$route.path !== '/index'
+        back: this.$route.path.indexOf('index') === -1
       }
     },
     methods: {

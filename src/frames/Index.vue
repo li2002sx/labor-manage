@@ -44,13 +44,14 @@
         <!--chart-->
         <div class='indexchart'>
             <!--datetab-->
-            <div class='datechange'>
-                <ul class='layout'>
-                    <li class='td' @click="showDay(-1)">前一天</li>
-                    <li class='td'>出勤 | <em @click="showPlugin()">{{endDate | format}}</em></li>
-                    <li class='td' @click="showDay(1)">后一天</li>
-                </ul>
-            </div>
+            <selectDate @statFun="getDataWorker"></selectDate>
+            <!--<div class='datechange'>-->
+            <!--<ul class='layout'>-->
+            <!--<li class='td' @click="showDay(-1)">前一天</li>-->
+            <!--<li class='td'>出勤 | <em @click="showPlugin()">{{endDate | format}}</em></li>-->
+            <!--<li class='td' @click="showDay(1)">后一天</li>-->
+            <!--</ul>-->
+            <!--</div>-->
             <!--datetab end-->
             <div style='height:320px;margin-top:30px' id="container2"></div>
         </div>
@@ -105,6 +106,7 @@
 <script>
   import headerTop from '../components/Header.vue'
   import footerButtom from '../components/Footer.vue'
+  import selectDate from '../components/SelectDate.vue'
   import {numberPad, Datetime, dateFormat} from 'vux'
   var Highcharts = require('highcharts')
   export default {
@@ -112,7 +114,8 @@
       headerTop,
       footerButtom,
       numberPad,
-      Datetime
+      Datetime,
+      selectDate
     },
     data () {
       return {
@@ -120,14 +123,14 @@
         totalStat: {},
         highchartsFontSize: '22px',
         onDateArr: [],
-        onNumArr: [],
-        endDate: new Date()
+        onNumArr: []
+//        endDate: new Date()
       }
     },
     created () {
       this.todayStr()
       this.getData()
-      this.getDataWorker()
+      this.getDataWorker(new Date())
     },
     filters: {
       format: function (value) {
@@ -164,10 +167,10 @@
           }
         }.bind(this))
       },
-      getDataWorker () {
+      getDataWorker (endDate) {
         let param = {
-          q_st: dateFormat(this.addDate(this.endDate, -7), 'YYYY-MM-DD'),
-          q_et: dateFormat(this.endDate, 'YYYY-MM-DD')
+          q_st: dateFormat(this.addDate(endDate, -7), 'YYYY-MM-DD'),
+          q_et: dateFormat(endDate, 'YYYY-MM-DD')
         }
         this.post('/LaborManage/welcome/analyzePerson.htm', param, function (result) {
           this.onDateArr = []
@@ -255,31 +258,31 @@
           }]
         })
       },
-      showPlugin () {
-        let that = this
-        this.$vux.datetime.show({
-          cancelText: '取消',
-          confirmText: '确定',
-          format: 'YYYY-MM-DD',
-          value: dateFormat(this.endDate, 'YYYY-MM-DD'),
-          onConfirm (val) {
-            console.log('plugin confirm', val)
-            that.endDate = val
-            that.getDataWorker()
-          },
-          onShow () {
-            console.log('plugin show')
-          },
-          onHide () {
-            console.log('plugin hide')
-          }
-        })
-      },
-      showDay: function (value) {
-        value = parseInt(value) || 0
-        this.endDate = this.addDate(this.endDate, value)
-        this.getDataWorker()
-      },
+//      showPlugin () {
+//        let that = this
+//        this.$vux.datetime.show({
+//          cancelText: '取消',
+//          confirmText: '确定',
+//          format: 'YYYY-MM-DD',
+//          value: dateFormat(this.endDate, 'YYYY-MM-DD'),
+//          onConfirm (val) {
+//            console.log('plugin confirm', val)
+//            that.endDate = val
+//            that.getDataWorker()
+//          },
+//          onShow () {
+//            console.log('plugin show')
+//          },
+//          onHide () {
+//            console.log('plugin hide')
+//          }
+//        })
+//      },
+//      showDay: function (value) {
+//        value = parseInt(value) || 0
+//        this.endDate = this.addDate(this.endDate, value)
+//        this.getDataWorker()
+//      },
       showCompany: function (value) {
         this.$router.push('/company/' + value)
       },

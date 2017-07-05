@@ -24,35 +24,10 @@
             <h4>出勤人数 | 公司 ∨</h4>
         </div>
         <!--datetab-->
-        <div class="datechange">
-            <ul class="layout">
-                <li class="td">前一天</li>
-                <li class="td">出勤 | <em>2017-12-30</em></li>
-                <li class="td">后一天</li>
-            </ul>
-        </div>
+        <selectDate @statFun="getCompanyData"></selectDate>
         <!--datetab end-->
         <div class="chartmod2">
-            <div class="layout">
-                <div class="td chartbox"></div>
-                <dl class="td chartlist">
-                    <dd>
-                        <p>20-30岁</p>
-                        <p class="c-chartred">47.96%</p>
-                    </dd>
-                    <dd>
-                        <p>30-40岁</p>
-                        <p class="c-chartred">47.96%</p>
-                    </dd>
-                    <dd>
-                        <p>40-50岁</p>
-                        <p class="c-chartred">47.96%</p>
-                    </dd>
-                    <dd>
-                        <p>50岁以上</p>
-                        <p class="c-chartblue">47.96%</p>
-                    </dd>
-                </dl>
+            <div class="layout" id="containerIndex">
             </div>
         </div>
         <!--chart end-->
@@ -66,40 +41,12 @@
             <th>异常</th>
             </thead>
             <tbody>
-            <tr>
-                <td><i>1</i></td>
-                <td>北京分公司</td>
-                <td>885</td>
-                <td>140</td>
-                <td>140</td>
-            </tr>
-            <tr>
-                <td><i>2</i></td>
-                <td>北京分公司</td>
-                <td>885</td>
-                <td>140</td>
-                <td>140</td>
-            </tr>
-            <tr>
-                <td><i>3</i></td>
-                <td>北京分公司</td>
-                <td>885</td>
-                <td>140</td>
-                <td>140</td>
-            </tr>
-            <tr>
-                <td><i>4</i></td>
-                <td>北京分公司</td>
-                <td>885</td>
-                <td>140</td>
-                <td>140</td>
-            </tr>
-            <tr>
-                <td><i>5</i></td>
-                <td>北京分公司</td>
-                <td>885</td>
-                <td>140</td>
-                <td>140</td>
+            <tr v-for="(item, index) in companyData">
+                <td><i>{{index+1}}</i></td>
+                <td>{{item[0]}}</td>
+                <td>{{item[1].onNum}}</td>
+                <td>{{item[1].onNormalNum}}</td>
+                <td>{{item[1].onNum - item[1].onNormalNum}}</td>
             </tr>
             </tbody>
         </table>
@@ -114,16 +61,116 @@
 <script>
   import headerTop from '../../components/Header.vue'
   import footerButtom from '../../components/Footer.vue'
+  import selectDate from '../../components/SelectDate.vue'
+  var Highcharts = require('highcharts')
   export default {
     components: {
       headerTop,
-      footerButtom
+      footerButtom,
+      selectDate
     },
     data () {
-      return {}
+      return {
+        companyData: [],
+        companyOnNumData: [],
+        highchartsFontSize: '22px'
+      }
+    },
+    created: function () {
+      this.getCompanyData()
     },
     computed: {},
     methods: {
+      getCompanyData () {
+        this.post('/LaborManage/welcome/findProjectInfoList.htm', {}, function (result) {
+          if (result != null && result.length > 0) {
+            this.companyData = []
+            this.companyOnNumData = []
+            let companys = new Map()
+            result.forEach(function (item) {
+              let companyName = item.org_name  // 公司名称
+              let companyInfo = {
+                projectNum: 1,                // 项目数量
+                registNum: parseInt(item.zc_count) || 0,    // 在册人数
+                onNum: parseInt(item.cq_count) || 0,        // 考勤人数
+                onNormalNum: parseInt(item.llcq_count) || 0,   // 考勤正常人数
+//              let offNum =item.zc_count+item.cd_count
+                machineNum: parseInt(item.dev_count) || 0,   // 考勤机数量
+                onMachineNum: parseInt(item.zx_count) || 0  // 在线考勤机数量
+              }
+              let value = companys.get(companyName)
+              if (value === undefined) {
+                companys.set(companyName, companyInfo)
+              } else {
+                value.projectNum += companyInfo.projectNum
+                value.registNum += companyInfo.registNum
+                value.onNum += companyInfo.onNum
+                value.onNormalNum += companyInfo.onNormalNum
+                value.machineNum += companyInfo.machineNum
+                value.onMachineNum += companyInfo.onMachineNum
+                companys.set(companyName, value)
+              }
+            })
+            this.companyData = [...companys]
+            this.companyData.forEach(function (item) {
+              let name = item[0].substr(0, 2)
+              let value = parseInt(item[1].onNum) || 0
+              if (name.indexOf('上海') > -1) {
+                this.companyOnNumData.push({
+                  name: name,
+                  y: value,
+                  sliced: true,
+                  selected: true
+                })
+              } else {
+                this.companyOnNumData.push([name, value])
+              }
+            }.bind(this))
+            this.drawCompanyDataChart()
+          } else {
+            this.toastShow('text', '获取统计记录为空')
+          }
+        }.bind(this))
+      },
+      drawCompanyDataChart () {
+        Highcharts.chart('containerIndex', {
+          chart: {
+            backgroundColor: 'rgba(0,0,0,0)',
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+          },
+          credits: {enabled: false},
+          title: {
+            text: null
+          },
+          tooltip: {
+            headerFormat: '{series.name}<br>',
+            pointFormat: '{point.name}: <b>{point.percentage:.1f}%</b>'
+          },
+          plotOptions: {
+            pie: {
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                enabled: true,
+                format: '{point.name}<br /> {point.percentage:.1f} %',
+                style: {
+                  color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || '#666',
+                  fontSize: this.highchartsFontSize,  // 字体
+                  fontWeight: 'normal',
+                  textShadow: '0px,0px,0px,0px'
+                }
+              }
+            }
+          },
+          series: [{
+            type: 'pie',
+            name: '出勤',
+            data: this.companyOnNumData
+          }]
+        })
+      },
       toUrl: function (value) {
         let url = ''
         value = parseInt(value) || 0
@@ -146,6 +193,7 @@
 
 <style>
     @import "../../less/analysis.css";
+
     .router-show-enter-active, .router-show-leave-active {
         transition: all .4s;
     }

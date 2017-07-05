@@ -1,0 +1,484 @@
+1，获取所有项目列表
+http://210.22.94.211:5389/LaborManage/welcome/findProjectInfoList.htm
+{
+	"x": "121.525226",
+	"y": "31.219422",
+	"lcq_count": "0",
+	"llcq_count": "0",
+	"dk_count": "0",
+	"zx_count": "0",
+	"construct_site": "峨山路浦东南路",
+	"dev_count": "2",
+	"turnkey_org": "上海莉源房地产开发有限公司",
+	"connect_name": "何剑",
+	"connect_tel": "18628083060",
+	"dept_id": "0112",
+	"dept_name": "上海分公司",
+	"org_id": "0101",
+	"org_name": "上海分公司",
+	"cq_count": "0",
+	"zc_count": "539",
+	"cd_count": "0",
+	"project_id": "b6a3dc8e1acd469e94ee54cd3482dfdf",
+	"project_name": "九龙仓E18(9-3）"
+}
+
+2，获取分公司列表：
+http://210.22.94.211:5389/LaborManage/appcommon/appOrgList.htm
+{
+	"state": "closed",
+	"enabled": "1",
+	"children": null,
+	"customid": null,
+	"sortno": "2",
+	"remark": "LWGL,ZLGL",
+	"parentname": "中建东方装饰有限公司",
+	"busOrgId": null,
+	"ddtj": null,
+	"model": "0",
+	"orgid": "0112",
+	"orgname": "上海分公司",
+	"parentid": "01",
+	"leaf": "0",
+	"orgtype": null,
+	"gsid": null
+}
+
+
+3，获取总统计信息：
+http://210.22.94.211:5389/LaborManage/appanalyzekq/findAnalyzeKq.htm
+org_id=0112&project_id=b6a3dc8e1acd469e94ee54cd3482dfdf&d=2017-06-30（分公司，项目，日期）
+{
+	"project_count": "66",
+	"labor_count": "6674",
+	"cq_count": "885",
+	"zc_count": "796",
+	"cd_count": "50",
+	"zt_count": "39",
+	"cdzt_count": "0"
+}
+
+4，全部出勤：
+http://210.22.94.211:5389/LaborManage/kq/findKqList.htm
+b_time=2017-06-30&e_time=2017-06-30  &status=正常/迟到/早退
+project_id= labor_team = (筛选)
+{
+	"status": "正常",
+	"rec_createtime": null,
+	"org_id": null,
+	"org_name": null,
+	"rec_id": null,
+	"rec_recid": "342321197207073451",
+	"rec_time": null,
+	"work_hours": null,
+	"zt_status": null,
+	"b_time": null,
+	"e_time": null,
+	"kq_sb": null,
+	"st": "2017-06-30 17:32:26.0",
+	"et": "2017-06-30 17:32:26.0",
+	"rec_name": "周瑞有",
+	"job_name": "木工",
+	"d": "2017-06-30",
+	"cd_status": null,
+	"team_name": "徐金武",
+	"dksj": null,
+	"kq_address": null,
+	"dev_type": null,
+	"dev_name": null,
+	"labor_team": "0c68db0e981f41c58d2f8f04eba9b1e2",
+	"dev_sn": null,
+	"address": null,
+	"name": null,
+	"id": null,
+	"jobs_level_name": null,
+	"contract_attachment": null,
+	"attachment_name": null,
+	"job_starttime": null,
+	"job_deadline": null,
+	"sex_name": null,
+	"idpic": null,
+	"age": 0,
+	"company_name": null,
+	"edu_name": null,
+	"sex": "1",
+	"nation": null,
+	"birthday": null,
+	"urgency_phone": null,
+	"issue_organ": null,
+	"deadline": null,
+	"picture_front": null,
+	"picture_back": null,
+	"person_status": null,
+	"attachment_id": null,
+	"jobsid": null,
+	"team_id": null,
+	"fzrname": null,
+	"work_st": null,
+	"work_et": null,
+	"dcwork_st": null,
+	"dcwork_et": null,
+	"enter_date_s": null,
+	"enter_date_e": null,
+	"quit_date_s": null,
+	"quit_date_e": null,
+	"sexname": "男",
+	"identity_cark": null,
+	"labor_id": null,
+	"person_xz": null,
+	"enter_date": null,
+	"quit_date": null,
+	"jobs_id": "02",
+	"dorm_id": null,
+	"special_jobs": null,
+	"job_authority": null,
+	"great_disease": null,
+	"crime_record": null,
+	"records": null,
+	"chip_number": null,
+	"helmet_number": null,
+	"jobs_level": null,
+	"edu_level": null,
+	"job_years": 0,
+	"company_id": null,
+	"project_id": "0bb92ede509842fa8cb4f2663160e970",
+	"phone": null,
+	"ryxz": null,
+	"dcenter_date": null,
+	"dcquit_date": null,
+	"jobsname": null,
+	"ldht": null,
+	"project_name": "虹桥汇项目部",
+	"person_id": "1a973bafe80342718a862b18b590f399",
+	"special_jobs_number": null,
+	"labor_contract": null,
+	"contract_number": null,
+	"disease_describe": null
+}
+
+5，获取分公司项目列表：
+http://210.22.94.211:5389/LaborManage/appcommon/appProjectList.htm?org_id=0112
+{
+	"id": "b6a3dc8e1acd469e94ee54cd3482dfdf",
+	"state": null,
+	"x": "121.525226",
+	"y": "31.219422",
+	"project_status": "00",
+	"construct_site": "峨山路浦东南路",
+	"dev_count": "2",
+	"person_count": "539",
+	"team_count": "1",
+	"manager_count": "2",
+	"status_name": "在建",
+	"finish_date": null,
+	"build_date": "2016-05-04 15:51:29",
+	"expanded": null,
+	"childrensList": null,
+	"turnkey_org": "上海莉源房地产开发有限公司",
+	"connect_name": "何剑",
+	"connect_tel": "18628083060",
+	"dept_id": "0112",
+	"dept_name": "上海分公司",
+	"org_id": "0112",
+	"org_name": "上海分公司",
+	"project_name": "九龙仓E18(9-3）",
+	"iconCls": null,
+	"leaf": null
+}
+
+6，获取分公司班组列表：
+http://210.22.94.211:5389/LaborManage/appcommon/appTeamList.htm?project_id=b6a3dc8e1acd469e94ee54cd3482dfdf
+{
+	"id": null,
+	"tel": null,
+	"company_address": null,
+	"m_name": null,
+	"m_tel": null,
+	"m_card": null,
+	"company_name": null,
+	"team_id": null,
+	"work_st": null,
+	"work_et": null,
+	"team_name": "全部",
+	"company_id": null,
+	"project_id": null
+}
+
+7,考勤机台账：
+http://210.22.94.211:5389/LaborManage/device/findAllDevice.htm
+{
+	"dev_firmwarever": "1.216.194",
+	"x": null,
+	"y": null,
+	"dev_id": "21848",
+	"dev_ip": null,
+	"dev_status": "0",
+	"dev_type": "T216S_U3G",
+	"dev_name": "科技部测试机",
+	"dev_sn": "8116415040000775"
+}
+
+8，花名册
+http://210.22.94.211:5389/LaborManage/person/findPersonList.htm  project_id=23309bd332a54d678ef3f01924c2ad21&labor_team=1b9a6f902f8742d8becbdd6e0d055904
+{
+	"address": "安徽省凤台县钱庙乡中南村李咀４６８",
+	"name": "李方军",
+	"id": "f42c9f00b4644be89e4e54684331be1f",
+	"jobs_level_name": null,
+	"contract_attachment": null,
+	"attachment_name": null,
+	"job_starttime": null,
+	"job_deadline": null,
+	"sex_name": "男",
+	"idpic": "",
+	"age": 50,
+	"company_name": "上海步宇建筑工程有限公司",
+	"edu_name": "初中",
+	"sex": "1",
+	"nation": "汉",
+	"birthday": "1967-10-04 00:00:00",
+	"urgency_phone": null,
+	"issue_organ": "凤台县公安局",
+	"deadline": "2017-04-19 00:00:00",
+	"picture_front": null,
+	"picture_back": null,
+	"person_status": null,
+	"attachment_id": null,
+	"jobsid": null,
+	"team_id": null,
+	"fzrname": null,
+	"work_st": null,
+	"work_et": null,
+	"dcwork_st": null,
+	"dcwork_et": null,
+	"enter_date_s": null,
+	"enter_date_e": null,
+	"quit_date_s": null,
+	"quit_date_e": null,
+	"sexname": null,
+	"team_name": "余成兵",
+	"identity_cark": "340421196710045430",
+	"labor_id": "cb25e3f9487e413196d23b31da55bdb9",
+	"person_xz": "02",
+	"labor_team": "1b9a6f902f8742d8becbdd6e0d055904",
+	"enter_date": "2017-04-19 00:00:00",
+	"quit_date": null,
+	"jobs_id": "04",
+	"dorm_id": null,
+	"special_jobs": "0",
+	"job_authority": null,
+	"great_disease": null,
+	"crime_record": null,
+	"records": null,
+	"chip_number": null,
+	"helmet_number": null,
+	"jobs_level": null,
+	"edu_level": "07",
+	"job_years": 0,
+	"company_id": "54d8cee795c44b4883e9057a2d4acc94",
+	"project_id": "23309bd332a54d678ef3f01924c2ad21",
+	"phone": "18655483731",
+	"ryxz": null,
+	"dcenter_date": null,
+	"dcquit_date": null,
+	"jobsname": "幕墙工",
+	"ldht": null,
+	"project_name": "上海虹桥商务区核心区北片区07地块阿里巴巴EPC项目",
+	"person_id": "f42c9f00b4644be89e4e54684331be1f",
+	"special_jobs_number": null,
+	"labor_contract": "1",
+	"contract_number": null,
+	"disease_describe": null
+}
+
+9，分公司项目统计
+http://210.22.94.211:5389/LaborManage/welcome/analyzeProject.htm q_st=2017-6-01&q_et=2017-6-30
+{
+	"count": 4,
+	"org_id": null,
+	"jobs_id": null,
+	"project_id": null,
+	"q_st": null,
+	"q_et": null,
+	"jldw": null,
+	"tjzd": null,
+	"tjzdName": "青岛分公司",
+	"tjysf": null
+}
+
+10，工人年龄分布统计：
+http://210.22.94.211:5389/LaborManage/welcome/analyzeAge.htm
+{
+	"count": 181,
+	"org_id": null,
+	"jobs_id": null,
+	"project_id": null,
+	"q_st": null,
+	"q_et": null,
+	"jldw": null,
+	"tjzd": null,
+	"tjzdName": "0~30",
+	"tjysf": null
+}
+
+11，出勤工人数量统计：
+http://210.22.94.211:5389/LaborManage/welcome/analyzePerson.htm  q_st=2017-6-01&q_et=2017-6-30
+{
+	"count": 1178,
+	"org_id": null,
+	"jobs_id": null,
+	"project_id": null,
+	"q_st": null,
+	"q_et": null,
+	"jldw": null,
+	"tjzd": "2017-06-01",
+	"tjzdName": "06/01",
+	"tjysf": null
+}
+
+12，出勤工人工种统计：
+http://210.22.94.211:5389/LaborManage/welcome/analyzeJob.htm q_st=2017-6-01&q_et=2017-6-30
+{
+	"count": 212,
+	"org_id": null,
+	"jobs_id": null,
+	"project_id": null,
+	"q_st": null,
+	"q_et": null,
+	"jldw": null,
+	"tjzd": "04",
+	"tjzdName": "幕墙工",
+	"tjysf": null
+}
+
+13，用工波动：
+http://210.22.94.211:5389/LaborManage/labour/findPersonCount.htm q_st=2017-6-01&q_et=2017-6-30&project_id=23309bd332a54d678ef3f01924c2ad21
+{
+	"count": 65,
+	"org_id": null,
+	"jobs_id": null,
+	"project_id": null,
+	"q_st": null,
+	"q_et": null,
+	"jldw": null,
+	"tjzd": "2017-06-01",
+	"tjzdName": "06/01",
+	"tjysf": null
+}
+
+14，投诉管理：
+http://210.22.94.211:5389/LaborManage/complain/add.htm  update.htm  id=&project_id=&team_id=&person_name=&complain_time=&complain_content=
+
+
+15，类型:
+http://210.22.94.211:5389/LaborManage/sysDic/findDicByClassCode.htm?classCode=Ptype（照片类型）
+http://210.22.94.211:5389/LaborManage/sysDic/findDicByClassCode.htm?classCode=wztl（违章条例）
+{
+	"status": "1",
+	"remark": null,
+	"classCode": "Ptype",
+	"classValue": "照片类别",
+	"parentId": "aaceaf76e9f343acac4312fe7a429a25",
+	"classFlag": "0",
+	"sortNo": 1,
+	"dataCode": "01",
+	"dataValue": "操作证",
+	"uuid": "458744d62005462bb7488e0fcec92693",
+	"parentName": "照片类别",
+	"leaf": "1"
+}
+
+16，工人照片录入：
+http://210.22.94.211:5389/LaborManage/apppersonPhoto/add.htm
+{
+  person_id：e5dcbad620b645aa81bdf9500a47d5fe,
+  p_type:03
+}
+
+16，工人违章举报：
+http://210.22.94.211:5389/LaborManage/appwztl/add.htm
+{
+wzid=
+&project_id=8a17d73b46ea464bb6eb8986e9da2d47
+&team_id=29cc1c6408824f538a874d9b739b8fe4
+&wztl_id=9a693ff44243491892c6ffba412bbdbe
+&wzrq=2017-07-05&imgs=
+}
+
+17，任务发布：
+http://210.22.94.211:5389/LaborManage/constructtask/add.htm
+id=&project_id=&team_id=&send_time=&ending_time=&task_content=
+id=8d64dfe44b034d5e832943a156bd21b2&project_id=&team_id=&send_time=&ending_time=&task_content=&t_status=1
+
+18，用户信息：
+http://210.22.94.211:5389/LaborManage/person/findPersonList.htm identity_cark=410426198012284011
+{
+	"address": "河南省襄城县丁营乡耿庄村",
+	"name": "赫召然",
+	"id": "44d4a6e5df604a6ebc42d4fe27bc4702",
+	"jobs_level_name": null,
+	"contract_attachment": null,
+	"attachment_name": null,
+	"job_starttime": null,
+	"job_deadline": null,
+	"sex_name": "男",
+	"idpic": "",
+	"age": 37,
+	"company_name": "北京实创鸿源建筑劳务有限公司",
+	"edu_name": null,
+	"sex": "1",
+	"nation": "汉",
+	"birthday": "1980-12-28 00:00:00",
+	"urgency_phone": null,
+	"issue_organ": "襄城县公安局",
+	"deadline": "2036-01-28 00:00:00",
+	"picture_front": null,
+	"picture_back": null,
+	"person_status": null,
+	"attachment_id": null,
+	"jobsid": null,
+	"team_id": null,
+	"fzrname": null,
+	"work_st": "07:00",
+	"work_et": "18:00",
+	"dcwork_st": null,
+	"dcwork_et": null,
+	"enter_date_s": null,
+	"enter_date_e": null,
+	"quit_date_s": null,
+	"quit_date_e": null,
+	"sexname": null,
+	"team_name": "张元军",
+	"identity_cark": "410426198012284011",
+	"labor_id": "6b573a63414d4f3ba5224b2acabe9962",
+	"person_xz": "02",
+	"labor_team": "8773f7911bfe4053ab29eec8ae7df9ad",
+	"enter_date": "2017-03-01 00:00:00",
+	"quit_date": null,
+	"jobs_id": "04",
+	"dorm_id": null,
+	"special_jobs": "0",
+	"job_authority": null,
+	"great_disease": null,
+	"crime_record": null,
+	"records": null,
+	"chip_number": null,
+	"helmet_number": null,
+	"jobs_level": null,
+	"edu_level": null,
+	"job_years": 0,
+	"company_id": "58f500fbc1ec4f53ae9c14235f2dd149",
+	"project_id": "faac018d74784c85b3b163a2e851fdd7",
+	"phone": "17765789876",
+	"ryxz": null,
+	"dcenter_date": null,
+	"dcquit_date": null,
+	"jobsname": "幕墙工",
+	"ldht": null,
+	"project_name": "北京商务中心（CBD）核心区Z14地块商业金融项目幕墙深化设计、供应及安装分包工程",
+	"person_id": "44d4a6e5df604a6ebc42d4fe27bc4702",
+	"special_jobs_number": null,
+	"labor_contract": "1",
+	"contract_number": null,
+	"disease_describe": null
+}
