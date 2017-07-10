@@ -129,6 +129,10 @@ Vue.prototype.post = function (url, data, callback) {
     key += '_' + data[p]
   }
 
+  if (url.indexOf('login.htm') > -1) {
+    this.removeStore(key)
+  }
+
   new Promise(function (resolve, reject) {
     let jsonData = this.getStore(key)
     if (jsonData !== null && jsonData.length > 3) {

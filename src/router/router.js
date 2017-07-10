@@ -19,6 +19,9 @@ const StatWorker = r => require.ensure([], () => r(require('../frames/stat/Worke
 const StatStaff = r => require.ensure([], () => r(require('../frames/stat/staff')), 'StatStaff')
 
 export default [{
+  path: '',
+  redirect: '/login'
+}, {
   path: '/login',
   component: Login
 }, {
