@@ -314,33 +314,33 @@
   text-align: center;
   padding-left: 0;
 }
-.an-table tr:first-child td:first-child:before {
-  background: url("../images/icon/ico-top1.png") no-repeat center center;
-  width: 31px;
-  height: 23px;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  content: "";
-  margin-right: 3px;
-}
-.an-table tr:nth-child(2) td:first-child:before {
-  background: url("../images/icon/ico-top2.png") no-repeat center center;
-  width: 31px;
-  height: 23px;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  content: "";
-  margin-right: 3px;
-}
-.an-table tr:nth-child(3) td:first-child:before {
-  background: url("../images/icon/ico-top3.png") no-repeat center center;
-  width: 31px;
-  height: 23px;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-  content: "";
-  margin-right: 3px;
-}
+/*.an-table tr:first-child td:first-child:before {*/
+  /*background: url("../images/icon/ico-top1.png") no-repeat center center;*/
+  /*width: 31px;*/
+  /*height: 23px;*/
+  /*display: inline-block;*/
+  /*position: relative;*/
+  /*vertical-align: middle;*/
+  /*content: "";*/
+  /*margin-right: 3px;*/
+/*}*/
+/*.an-table tr:nth-child(2) td:first-child:before {*/
+  /*background: url("../images/icon/ico-top2.png") no-repeat center center;*/
+  /*width: 31px;*/
+  /*height: 23px;*/
+  /*display: inline-block;*/
+  /*position: relative;*/
+  /*vertical-align: middle;*/
+  /*content: "";*/
+  /*margin-right: 3px;*/
+/*}*/
+/*.an-table tr:nth-child(3) td:first-child:before {*/
+  /*background: url("../images/icon/ico-top3.png") no-repeat center center;*/
+  /*width: 31px;*/
+  /*height: 23px;*/
+  /*display: inline-block;*/
+  /*position: relative;*/
+  /*vertical-align: middle;*/
+  /*content: "";*/
+  /*margin-right: 3px;*/
+/*}*/

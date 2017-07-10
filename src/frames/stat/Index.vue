@@ -20,9 +20,10 @@
         </div>
         <!--indexmenu end-->
         <!--chart-->
-        <div class="chartmod2">
-            <h4>出勤人数 | 公司 ∨</h4>
-        </div>
+        <!--<div class="chartmod2">-->
+        <!--<h4>出勤人数 | 公司 ∨</h4>-->
+        <!--</div>-->
+        <selectCompany title="出勤人数" @selectCompany="getSelectCompany"></selectCompany>
         <!--datetab-->
         <selectDate @statFun="getCompanyData"></selectDate>
         <!--datetab end-->
@@ -62,18 +63,21 @@
   import headerTop from '../../components/Header.vue'
   import footerButtom from '../../components/Footer.vue'
   import selectDate from '../../components/SelectDate.vue'
+  import selectCompany from '../../components/SelectConpany.vue'
   var Highcharts = require('highcharts')
   export default {
     components: {
       headerTop,
       footerButtom,
-      selectDate
+      selectDate,
+      selectCompany
     },
     data () {
       return {
         companyData: [],
         companyOnNumData: [],
-        highchartsFontSize: '22px'
+        highchartsFontSize: '22px',
+        companyId: ''
       }
     },
     created: function () {
@@ -81,6 +85,9 @@
     },
     computed: {},
     methods: {
+      getSelectCompany (value) {
+        this.companyId = value || ''
+      },
       getCompanyData () {
         this.post('/LaborManage/welcome/findProjectInfoList.htm', {}, function (result) {
           if (result != null && result.length > 0) {

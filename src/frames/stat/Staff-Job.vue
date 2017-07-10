@@ -9,7 +9,7 @@
         </div>
         <!--chart end-->
         <!--line-->
-        <div class="curoff"></div>
+        <!--<div class="curoff"></div>-->
         <!--line end-->
         <!--chart-->
         <!--<div class="chartmod">-->

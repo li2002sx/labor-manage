@@ -452,7 +452,6 @@ body {
 .listmod dd .button {
   border-radius: 16px 16px 16px 16px;
   display: inline-block;
-  position: relative;
   vertical-align: middle;
   zoom: 1;
   font-size: 24px;
@@ -463,6 +462,15 @@ body {
   border: 1px solid #60a0f2;
   color: #60a0f2;
   margin-left: 20px;
+  position: relative;
+}
+.listmod dd .button input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
 }
 .listmod dd textarea {
   width: 550px;
@@ -470,6 +478,46 @@ body {
   border: 1px solid #bdbdbd;
   padding: 6px;
   resize: none;
+}
+.listmod dd ul.imglist {
+  display: flex;
+  width: 100%;
+}
+.listmod dd li {
+  flex: 1;
+  width: 100%;
+  padding-right: 10px;
+  text-align: center;
+  position: relative;
+}
+.listmod dd li img {
+  max-width: 100%;
+}
+.listmod dd li .imgbox {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  zoom: 1;
+}
+.listmod dd li .del {
+  background-color: #fe0000;
+  width: 30px;
+  height: 30px;
+  border-radius: 50% 50% 50% 50%;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.listmod dd li .del:after {
+  background-color: #fff;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 17px;
+  height: 3px;
+  content: "";
+  margin-left: -8px;
+  margin-top: -2px;
 }
 .listmod dt {
   text-align: right;

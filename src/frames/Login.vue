@@ -45,10 +45,13 @@
     },
     methods: {
       autoLogin: function () {
-        let param = JSON.parse(this.getStore(this.userInfoStorage))
-        this.account = param.userno
-        this.password = param.password
-        this.login()
+        let loginStorage = this.getStore(this.userInfoStorage)
+        if (loginStorage !== null) {
+          let param = JSON.parse(loginStorage)
+          this.account = param.userno
+          this.password = param.password
+          this.login()
+        }
       },
       remember: function () {
         this.isRemember = !this.isRemember

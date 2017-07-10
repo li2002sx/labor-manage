@@ -90,7 +90,7 @@ const baseURL = 'http://210.22.94.211:5389/'
 Vue.prototype.get = function (url, params, callback) {
   // 显示
   this.$vux.loading.show({
-    text: 'Loading'
+    text: '加载中...'
   })
   axios({
     url: url,
@@ -102,7 +102,12 @@ Vue.prototype.get = function (url, params, callback) {
     responseType: 'json', // default
     timeout: 100000
   }).then(response => {
-    callback(response.data)
+    let data = response.data
+    if (data === null) {
+      this.$router.push('/login')
+    } else {
+      callback(data)
+    }
     // 隐藏
     this.$vux.loading.hide()
   }).catch(error => {
@@ -116,20 +121,89 @@ Vue.prototype.get = function (url, params, callback) {
 Vue.prototype.post = function (url, data, callback) {
   // 显示
   this.$vux.loading.show({
-    text: 'Loading'
+    text: '加载中...'
+  })
+
+  let key = url
+  for (var p in data) {
+    key += '_' + data[p]
+  }
+
+  new Promise(function (resolve, reject) {
+    let jsonData = this.getStore(key)
+    if (jsonData !== null && jsonData.length > 3) {
+      resolve(JSON.parse(jsonData))
+    } else {
+      reject()
+    }
+  }.bind(this)).then(function (data) {
+    callback(data)
+    // 隐藏
+    this.$vux.loading.hide()
+  }.bind(this)).catch(function () {
+    axios({
+      url: url,
+      method: 'post',
+      baseURL: baseURL,
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      transformRequest: [function (data) {
+        // 为了避免qs格式化时对内层对象的格式化先把内层的对象转为
+        data.CustData = JSON.stringify(data.CustData)
+        // 由于使用的form-data传数据所以要格式化
+        data = Qs.stringify(data)
+        return data
+      }],
+      transformResponse: [function (data) {
+        return data
+      }],
+      data: data,
+      withCredentials: true, // default
+      responseType: 'json', // default
+      timeout: 100000,
+      // `onUploadProgress`上传进度事件
+      onUploadProgress: function (progressEvent) {
+      },
+      // 下载进度的事件
+      onDownloadProgress: function (progressEvent) {
+      }
+    }).then(response => {
+      let data = response.data
+      if (data === null) {
+        this.$router.push('/login')
+      } else {
+        this.setStore(key, JSON.stringify(data))
+        callback(data)
+      }
+      // 隐藏
+      this.$vux.loading.hide()
+    }).catch(error => {
+      // 隐藏
+      this.$vux.loading.hide()
+      console.log(error)
+    })
+  }.bind(this))
+}
+
+// axiosPost请求
+Vue.prototype.postForm = function (url, data, callback) {
+  // 显示
+  this.$vux.loading.show({
+    text: '加载中...'
   })
   axios({
     url: url,
     method: 'post',
     baseURL: baseURL,
     headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': 'multipart/form-data'
     },
     transformRequest: [function (data) {
       // 为了避免qs格式化时对内层对象的格式化先把内层的对象转为
-      data.CustData = JSON.stringify(data.CustData)
+      // data.CustData = JSON.stringify(data.CustData)
       // 由于使用的form-data传数据所以要格式化
-      data = Qs.stringify(data)
+      // data = Qs.stringify(data)
       return data
     }],
     transformResponse: [function (data) {
@@ -146,7 +220,12 @@ Vue.prototype.post = function (url, data, callback) {
     onDownloadProgress: function (progressEvent) {
     }
   }).then(response => {
-    callback(response.data)
+    let data = response.data
+    if (data === null) {
+      this.$router.push('/login')
+    } else {
+      callback(data)
+    }
     // 隐藏
     this.$vux.loading.hide()
   }).catch(error => {

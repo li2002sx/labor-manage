@@ -2,16 +2,10 @@
     <section class="child_page">
         <headerTop title="用工分析"></headerTop>
         <!--datetab-->
-        <div class="datechange">
-            <ul class="layout">
-                <li class="td">前一天</li>
-                <li class="td">出勤 | <em @click="showPlugin">2017-12-30</em></li>
-                <li class="td">后一天</li>
-            </ul>
-        </div>
+        <selectDate @statFun="getWorkerData"></selectDate>
         <!--datetab end-->
         <!--chart-->
-        <div class="chartmod" style="height:610px;" id="container">
+        <div class="chartmod" style="height:610px;" id="containerWorker">
 
         </div>
         <!--chart end-->
@@ -19,9 +13,9 @@
         <div class="curoff"></div>
         <!--line end-->
         <!--chart-->
-        <div class="chartmod" style="width:100%;height:410px;">
-            <h4>上海分公司</h4>
-            <div id="container2"></div>
+        <div class="chartmod" style="height:410px;">
+            <h4>{{companyName}}</h4>
+            <div id="containerProject"></div>
         </div>
         <!--chart end-->
     </section>
@@ -48,11 +42,12 @@
 //        companyProjects: null,
         projectData: [],
         projectNameArr: [],
-        projectOnNumArr: []
+        projectOnNumArr: [],
+        companyName: '上海分公司'
       }
     },
     created: function () {
-      this.getData()
+      this.getWorkerData()
     },
     filters: {
       subStr: function (value, num) {
@@ -65,9 +60,15 @@
 //      this.drawAreaChart()
     },
     methods: {
-      getCompanyData () {
+      getWorkerData () {
         this.post('/LaborManage/welcome/findProjectInfoList.htm', {}, function (result) {
           if (result != null && result.length > 0) {
+            this.companyData = []
+            this.companyNameArr = []
+            this.companyOnNumArr = []
+            this.projectData = []
+            this.projectNameArr = []
+            this.projectOnNumArr = []
             let companys = new Map()
             let companyProjects = new Map()
             result.forEach(function (item) {
@@ -130,7 +131,7 @@
         }.bind(this))
       },
       drawCompanyChart () {
-        Highcharts.chart('container', {
+        Highcharts.chart('containerWorker', {
           chart: {
             backgroundColor: 'rgba(0,0,0,0)',
             plotBackgroundColor: null,
@@ -163,6 +164,7 @@
           },
           yAxis: {
             min: 0,
+            gridLineWidth: '0px',
             title: {
               text: '出勤人数 (人)'
             },
@@ -197,6 +199,7 @@
                   this.projectOnNumArr = []
                   this.projectData.forEach(function (com) {
                     if (com[0].indexOf(companyName) > -1) {
+                      this.companyName = com[0]
                       com[1].forEach(function (item) {
                         let name = item.projectName.substr(0, 5)
                         let value = parseInt(item.onNum) || 0
@@ -219,7 +222,7 @@
         })
       },
       drawAreaChart () {
-        Highcharts.chart('container2', {
+        Highcharts.chart('containerProject', {
           chart: {
             backgroundColor: 'rgba(0,0,0,0)',
             type: 'areaspline',

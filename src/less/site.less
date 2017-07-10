@@ -106,12 +106,49 @@ body{
             border: 1px solid #60a0f2;
             color: #60a0f2;
             margin-left: 20px;
+            position: relative;
+            input{
+                .pos-alt;
+                .square(100%);
+                opacity: 0;
+            }
         }
         textarea{
             .elesize(550px;230px);
             border: 1px solid #bdbdbd;
             padding: 6px;
             resize: none;
+        }
+        ul.imglist{
+            display: flex;
+            width: 100%;
+        }
+        li{
+            flex: 1;
+            width: 100%;
+            padding-right: 10px;
+            text-align: center;
+            position: relative;
+            img{
+                max-width: 100%;
+            }
+            .imgbox{
+                .inline-block;
+            }
+            .del{
+                .bg-color(#fe0000);
+                .square(30px);
+                .circle(50%);
+                .pos-atr(10px;10px);
+                &:after{
+                    .bg-color(#fff);
+                    .pos-alt(50%; 50%);
+                    .elesize(17px;3px);
+                    content: "";
+                    margin-left: -8px;
+                    margin-top: -2px;
+                }
+            }
         }
     }
     dt{
