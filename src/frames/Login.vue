@@ -25,10 +25,12 @@
 
 <script>
   //  import {Toast} from 'mint-ui'
+  import {cookie} from 'vux'
   export default {
-//    components: {
+    components: {
 //      Toast
-//    },
+      cookie
+    },
     data () {
       return {
         isRemember: true,
@@ -36,6 +38,16 @@
         account: '',
         password: ''
       }
+    },
+    created () {
+//      cookie.set('JSESSIONID', '477037B5C9FE4BBABFE169A56CB0787F', {
+//        path: '/',
+//        expires: 1
+//      })
+//      cookie.set('DWRSESSIONID', 'QzOnBNuWOT85VMAkbKXxV3qz9Pl', {
+//        path: '/',
+//        expires: 1
+//      })
     },
     computed: {},
     mounted: function () {

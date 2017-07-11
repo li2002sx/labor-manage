@@ -18,6 +18,7 @@
                     <p>首页</p>
                 </dd>
                 <dd class="td" :class="{on:tab==1}" @click="mainMenu(1)"><i class="ico-site"></i>
+                    <span class="redpoint">9</span>
                     <p>现场管理</p>
                 </dd>
                 <dd class="td" :class="{on:tab==2}" @click="mainMenu(2)"><i class="ico-analy"></i>

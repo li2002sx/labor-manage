@@ -26,19 +26,22 @@ export default [{
   component: Login
 }, {
   path: '/index',
-  component: LaborIndex
-}, {
-  path: '/company/:id',
-  component: CompanyDetail
-}, {
-  path: '/company/project/:id/:name',
-  component: CompanyProject
-}, {
-  path: '/company/team/:projectId/:teamId/:teamName',
-  component: CompanyTeam,
+  component: LaborIndex,
   children: [{
-    path: '/company/info/:cardno',
-    component: CompanyInfo
+    path: '/company/:id',
+    component: CompanyDetail,
+    children: [{
+      path: '/company/project/:id/:name',
+      component: CompanyProject,
+      children: [{
+        path: '/company/team/:projectId/:teamId/:teamName',
+        component: CompanyTeam,
+        children: [{
+          path: '/company/info/:cardno',
+          component: CompanyInfo
+        }]
+      }]
+    }]
   }]
 }, {
   path: '/scene/index',
@@ -58,14 +61,15 @@ export default [{
   }]
 }, {
   path: '/stat/index',
-  component: StatIndex
-}, {
-  path: '/stat/project',
-  component: StatProject
-}, {
-  path: '/stat/worker',
-  component: StatWorker
-}, {
-  path: '/stat/staff',
-  component: StatStaff
+  component: StatIndex,
+  children: [{
+    path: '/stat/project',
+    component: StatProject
+  }, {
+    path: '/stat/worker',
+    component: StatWorker
+  }, {
+    path: '/stat/staff',
+    component: StatStaff
+  }]
 }]

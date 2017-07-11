@@ -1,5 +1,5 @@
 <template>
-    <section class="child_page" ref="wrapper">
+    <section class="child_page">
         <headerTop :title="comName"></headerTop>
         <!--datetab-->
         <selectDate @statFun="getCompanyData"></selectDate>
@@ -41,7 +41,7 @@
   import footerButtom from '../../components/Footer.vue'
   import selectDate from '../../components/SelectDate.vue'
   import {Datetime} from 'vux'
-  import BScroll from 'better-scroll'
+//  import BScroll from 'better-scroll'
   var Highcharts = require('highcharts')
   export default {
     components: {
@@ -112,9 +112,13 @@
               }
             }
             this.drawAreaChart()
-            this.$nextTick(() => {
-              this.scroll = new BScroll(this.$refs.wrapper, {})
-            })
+//            this.$nextTick(() => {
+//              console.log('height', this.$refs.wrapper.offsetHeight)
+//              let scroll = new BScroll(this.$refs.wrapper, {})
+//              scroll.on('scroll', (pos) => {
+//                console.log(pos.x + '~' + pos.y)
+//              })
+//            })
 //            new BScroll(document.getElementById('wrapper'), {})
           } else {
             this.toastShow('text', '获取统计记录为空')

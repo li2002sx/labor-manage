@@ -443,3 +443,18 @@ header .filter {
   overflow-y: auto;
   /*background-color: #ebebeb;*/
 }
+
+.redpoint{
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  display: inline-block;
+  background: #FF403C;
+  border: 1px solid #FFFFFF;
+  border-radius: 100%;
+  margin: 0 0 0 -15px;
+  font-size: 18px;
+  color: #FFFFFF;
+  text-align: center;
+  line-height: 26px;
+}
