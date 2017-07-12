@@ -10,13 +10,11 @@
     dd{
         width:33.3%;
         .tc;
-        filter: grayscale(100%);
-	    filter: gray;
         color: #929292;
         padding-top: 10px;
         &.on{
-            filter: none;
-            filter: none;
+            //filter: none;
+            //filter: none;
             .c-blue;
         }
     }
@@ -26,6 +24,8 @@
     .ico-home,.ico-site,.ico-analy{
         .icon("../../images/icon/ico-menu-manage.png";center;center;50px;50px);
         background-size: 50px 34px;
+        filter: grayscale(100%);
+        filter: gray;
     }
     .ico-home{
         background-image: url("../../images/icon/ico-menu-home.png");
@@ -34,5 +34,11 @@
     .ico-analy{
         background-image: url("../../images/icon/ico-menu-any.png");
         background-size: 40px 40px;
+    }
+    dd.on{
+        .ico-home,.ico-site,.ico-analy{
+            filter: none;
+            filter: none;
+        }
     }
 }

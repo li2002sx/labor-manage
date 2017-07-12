@@ -148,14 +148,6 @@
     background-size: contain;
   }
 }
-.login-user {
-  background: url("../images/icon/ico-login-user.png") no-repeat center center;
-  width: 41px;
-  height: 47px;
-  display: inline-block;
-  position: relative;
-  vertical-align: middle;
-}
 .tabchange {
   border-bottom: 1px solid #ededed;
 }
